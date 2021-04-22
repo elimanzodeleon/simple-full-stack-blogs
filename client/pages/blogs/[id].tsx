@@ -7,7 +7,6 @@ import { BlogProps, Blog } from '../../interfaces';
 import { useRouter } from 'next/router';
 
 const SingleBlog: React.FC<BlogProps> = (props) => {
-  console.log(props.blog);
   const { _id, title, snippet, body } = props.blog;
 
   const router = useRouter();
@@ -48,7 +47,7 @@ export const getServerSideProps = async (context) => {
   const blogId = context.query.id;
   const result = await axios.get(`http://localhost:3500/blogs/${blogId}`);
   const blog = result.data.data.result;
-  console.log(blog);
+
   return { props: { blog } };
 };
 

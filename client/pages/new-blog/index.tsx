@@ -13,11 +13,9 @@ const NewBlog = () => {
 
   const submitBlog = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`${JSON.stringify({ title, snippet, body })} sent to server`);
-    router.push('/blogs');
 
     axios
-      .post('http://localhost:3500/create-blog', {
+      .post('http://localhost:3500/blogs/create-blog', {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -28,7 +26,7 @@ const NewBlog = () => {
         },
       })
       .then((res) => {
-        console.log('successfully posted story to server', res);
+        router.push('/blogs');
       })
       .catch((err) => {
         console.log(`unable to submit post: ${err}`);
